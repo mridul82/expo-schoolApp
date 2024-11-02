@@ -1,6 +1,7 @@
 // app/(tabs)/circular.tsx
 import React from 'react';
 import { View, Text, FlatList, TouchableOpacity } from 'react-native';
+import { FontAwesome } from '@expo/vector-icons';
 
 interface Circular {
   id: string;
@@ -17,23 +18,24 @@ export default function CircularScreen() {
   ];
 
   const renderItem = ({ item }: { item: Circular }) => (
-    <TouchableOpacity className="bg-white rounded-lg shadow-sm p-4 mb-3">
-      <Text className="text-lg font-semibold text-gray-800">
-        {item.title}
-      </Text>
-      <Text className="text-sm text-gray-500 mt-1">
-        {item.date}
-      </Text>
+    <TouchableOpacity className="bg-white rounded-lg shadow-md p-4 mb-3 flex-row items-center">
+      {/* Icon */}
+      <FontAwesome name="file-text-o" size={28} color="#3b82f6" className="mr-4" />
+      {/* Content */}
+      <View>
+        <Text className="text-lg font-semibold text-gray-800">{item.title}</Text>
+        <Text className="text-sm text-gray-500 mt-1">Date: {item.date}</Text>
+      </View>
     </TouchableOpacity>
   );
 
   return (
-    <View className="flex-1 bg-gray-100">
+    <View className="flex-1 bg-gray-100 p-4">
+      
       <FlatList
         data={circulars}
         renderItem={renderItem}
-        keyExtractor={item => item.id}
-        contentContainerClassName="p-4"
+        keyExtractor={(item) => item.id}
       />
     </View>
   );

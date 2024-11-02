@@ -23,10 +23,10 @@ export default function HomeScreen() {
         <Text className="text-lg font-bold text-gray-800 mb-4">Quick Links</Text>
         <View className="flex-row flex-wrap justify-between">
           {[
-            { name: 'Academic Calendar', icon: 'add' },
-            { name: 'Time Table', icon: 'schedule' },
-            { name: 'Attendance', icon: 'check-circle' },
-            { name: 'Assignments', icon: 'assignment' },
+            { name: 'Academic Calendar', icon: 'calendar-today' as const },
+            { name: 'Time Table', icon: 'access-time' as const },
+            { name: 'Attendance', icon: 'check-circle' as const },
+            { name: 'Assignments', icon: 'book' as const },
           ].map((link) => (
             <TouchableOpacity
               key={link.name}

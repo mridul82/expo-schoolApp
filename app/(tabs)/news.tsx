@@ -1,6 +1,7 @@
 // app/(tabs)/news.tsx
 import React from 'react';
 import { View, Text, FlatList, TouchableOpacity } from 'react-native';
+import { FontAwesome } from '@expo/vector-icons';
 
 interface NewsItem {
   id: string;
@@ -32,26 +33,25 @@ export default function NewsScreen() {
   ];
 
   const renderItem = ({ item }: { item: NewsItem }) => (
-    <TouchableOpacity className="bg-white rounded-lg shadow-sm p-4 mb-3">
-      <Text className="text-xl font-bold text-gray-800">
-        {item.title}
-      </Text>
-      <Text className="text-gray-600 mt-2">
-        {item.summary}
-      </Text>
-      <Text className="text-sm text-gray-400 mt-2">
-        {item.date}
-      </Text>
+    <TouchableOpacity className="bg-white rounded-lg shadow-md p-4 mb-3">
+      {/* Icon with Title */}
+      <View className="flex-row items-center mb-2">
+        <FontAwesome name="newspaper-o" size={28} color="#3b82f6" className="mr-3" />
+        <Text className="text-xl font-bold text-gray-800">{item.title}</Text>
+      </View>
+      {/* Summary and Date */}
+      <Text className="text-gray-600">{item.summary}</Text>
+      <Text className="text-sm text-gray-400 mt-2">Published on: {item.date}</Text>
     </TouchableOpacity>
   );
 
   return (
-    <View className="flex-1 bg-gray-100">
+    <View className="flex-1 bg-gray-100 p-4">
+      
       <FlatList
         data={news}
         renderItem={renderItem}
-        keyExtractor={item => item.id}
-        contentContainerClassName="p-4"
+        keyExtractor={(item) => item.id}
       />
     </View>
   );
